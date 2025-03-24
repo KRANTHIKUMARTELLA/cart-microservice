@@ -23,7 +23,7 @@ public class CartController {
         super();
         this.cartService = cartService;
     }
-
+   //get user id
     @GetMapping("/{userId}")
     public ResponseEntity<Cart> getCart(@PathVariable Integer userId) {
         logger.info("Fetching cart for user {}", userId);
@@ -31,6 +31,7 @@ public class CartController {
         return new ResponseEntity<>(cart, HttpStatus.OK);
     }
 
+    //add product to cart
     @PostMapping("/add")
     public ResponseEntity<CartItemRequest> addProductToCart(@RequestParam Integer userId, @RequestBody CartItemRequest request) {
         logger.info("Adding product to cart for user {}", userId);
@@ -38,6 +39,7 @@ public class CartController {
         return new ResponseEntity<>(request, HttpStatus.OK);
     }
 
+    //remove product from cart
     @DeleteMapping("/remove")
     public ResponseEntity<Cart> removeProductFromCart(@RequestParam Integer userId, @RequestParam Integer productId) {
         logger.info("Removing product from cart for user {}", userId);
@@ -45,6 +47,7 @@ public class CartController {
         return new ResponseEntity<>(cart, HttpStatus.OK);
     }
 
+    //update product quantity
     @PutMapping("/update")
     public ResponseEntity<Cart> updateProductQuantity(@RequestParam Integer userId, @RequestParam Integer productId, @RequestParam Double quantity) {
         logger.info("Updating product quantity in cart for user {}", userId);
@@ -52,6 +55,7 @@ public class CartController {
         return new ResponseEntity<>(cart, HttpStatus.OK);
     }
 
+    //clear the cart
     @DeleteMapping("/clear")
     public ResponseEntity<Void> clearCart(@RequestParam Integer userId) {
         logger.info("Clearing cart for user {}", userId);
